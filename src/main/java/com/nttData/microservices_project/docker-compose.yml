@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  cliente-persona-service:
+    build: ./cliente-persona-service
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+
+  cuenta-movimientos-service:
+    build: ./cuenta-movimientos-service
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+
+  db_cliente_persona:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: cliente_persona_db
+      POSTGRES_USER: tu_usuario
+      POSTGRES_PASSWORD: tu_contraseña
+    ports:
+      - "5432:5432"
+
+  db_cuenta_movimientos:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: cuenta_movimientos_db
+      POSTGRES_USER: tu_usuario
+      POSTGRES_PASSWORD: tu_contraseña
+    ports:
+      - "5433:5433"
